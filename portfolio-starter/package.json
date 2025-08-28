@@ -1,0 +1,39 @@
+{
+  "name": "portfolio-fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack portfolio with device-aware routing",
+  "main": "server/index.js",
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "build": "npm run build:client && npm run build:mobile",
+    "build:client": "cd client && npm ci --only=production && npm run build",
+    "build:mobile": "cd client-mobile && npm ci --only=production && npm run build",
+    "heroku-postbuild": "npm run build",
+    "docker:build": "docker build -t portfolio .",
+    "docker:run": "docker run -p 4000:4000 portfolio",
+    "docker:dev": "docker-compose up --build"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "express",
+    "mobile-first",
+    "responsive"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
