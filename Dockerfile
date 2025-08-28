@@ -39,4 +39,14 @@ COPY --from=builder --chown=nextjs:nodejs /app/server ./server
 COPY --from=builder --chown=nextjs:nodejs /app/client/dist ./client/dist
 COPY --from=builder --chown=nextjs:nodejs /app/client-mobile/dist ./client-mobile/dist
 
-# Switch to non-
+# Switch to non-root user
+USER nextjs
+
+# Expose port
+EXPOSE 3000
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
+
+# Start the application
+CMD ["node", "server/index.js"]
