@@ -310,7 +310,6 @@ html {
 
 .period {
   font-size: 14px;
-  color: var(--muted);
   white-space: nowrap;
 }
 /* Technologies section */
@@ -379,7 +378,12 @@ html {
 .competencies{columns:1;gap:12px;list-style:disc;padding-left:20px}
 .work-inner{max-width:1200px;margin:0 auto}
 .work-list{display:flex;flex-direction:column;gap:18px}
-.work-entry{display:flex;gap:20px;align-items:flex-start;padding:18px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);background:rgba(255,255,255,0.01)}
+.work-entry{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);background:rgba(255,255,255,0.01)}
+.work-entry .desc{white-space:pre-line}
+.work-entry .details{display:flex;flex-direction:column;gap:4px}
+.work-entry .company{font-size:16px;font-weight:600;margin:0}
+.work-entry .role{font-size:14px;color:var(--accent2)}
+.work-entry .company-row{margin:0}
 
 .mobile-footer {
   width: 100%;
@@ -397,6 +401,9 @@ html {
   gap: 10px;
   align-items: center;
 }
+
+/* Leadership: summary line styled like period with tighter spacing under period */
+/* removed Leadership-specific summary spacing override to revert to base styles */
 
 .footer-link {
   color: var(--accent2);

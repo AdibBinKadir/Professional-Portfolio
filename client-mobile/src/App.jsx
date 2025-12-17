@@ -4,6 +4,7 @@ import svgPath from './assets/hero-illustration.svg'
 import Projects from './Projects'
 import WorkExperience from './WorkExperience'
 import Technologies from './Technologies'
+import Leadership from './Leadership'
 import Footer from './Footer'
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
            </div>
            <Projects/>
            <WorkExperience/>
+           <Leadership />
            <Technologies/>
            <Footer/>
     </div>

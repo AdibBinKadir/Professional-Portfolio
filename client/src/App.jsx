@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Projects from './Projects'
 import WorkExperience from './WorkExperience'
+import Leadership from './Leadership'
 import Technologies from './Technologies'
 import Footer from './Footer'
 import svgPath from './assets/hero-illustration.svg'
@@ -29,6 +30,7 @@ export default function App(){
         <nav className="menu">
           <a href="#projects" onClick={(e)=>{e.preventDefault(); scrollToId('projects')}}>Projects</a>
           <a href="#work" onClick={(e)=>{e.preventDefault(); scrollToId('work')}}>Experience</a>
+          <a href="#leadership" onClick={(e)=>{e.preventDefault(); scrollToId('leadership')}}>Leadership</a>
           <a href="#technologies" onClick={(e)=>{e.preventDefault(); scrollToId('technologies')}}>Technologies</a>
           <a href="#contact" onClick={(e)=>{e.preventDefault(); scrollToId('contact')}}>Contact</a>
         </nav>
@@ -37,16 +39,17 @@ export default function App(){
         <main className="hero snap-child">
           <div className="hero-left">
             <h1 className="headline">Software<br/>Engineer</h1>
-            <p className="sub">My name is Adib. I am a <span className="link">software engineer</span> with a passion for artificial intellgience, machine learning, and computer vision.</p>
+            <p className="sub">My name is Adib. I am a <span className="link">software and ml/ai engineer</span> with a passion for artificial intellgience, machine learning, and computer vision. I am currently pursuing a <span className="link">Bachelor's Degree in Computer Science</span> at the <span className="link">University of Texas at Arlington</span>. I am part of its Honors College and Leadership Honors Program.</p>
             <button className="cta muted" onClick={() => window.open('https://github.com/AdibBinKadir', '_blank')}>Visit my Github</button>
           </div>
           <div className="hero-right">
             <img src={imgSrc} alt="hero" />
           </div>
         </main>
-        <Projects />
-        <WorkExperience />
-        <Technologies />
+  <Projects />
+  <WorkExperience />
+  <Leadership />
+  <Technologies />
       </div>
       <Footer />
     </div>
