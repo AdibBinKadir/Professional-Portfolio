@@ -31,8 +31,8 @@ export default function App() {
            <div className="snap-root">
              <main className="hero snap-child">
                <div className="hero-left">
-                 <h1 className="headline">Adib Bin Kadir</h1>
-                 <p className="sub">I am a <span className="link">software engineer</span> with a passion for artificial intellgience, machine learning, and computer vision.</p>
+                 <h1 className="headline">Software Engineer</h1>
+                 <p className="sub">My name is Adib. I am a <span className="link">software and ml/ai engineer</span> with a passion for artificial intellgience, machine learning, and computer vision. I am currently pursuing a <span className="link">Bachelor&apos;s Degree in Computer Science</span> at the <span className="link">University of Texas at Arlington</span>. I am part of its Honors College and Leadership Honors Program.</p>
                  <button className="cta muted" onClick={() => window.open('https://github.com/AdibBinKadir', '_blank')}>Visit my Github</button>
                </div>
              </main>
