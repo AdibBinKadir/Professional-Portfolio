@@ -32,3 +32,9 @@ cd ..\server; node index.js
 Notes
 - Desktop build is served at `/`; mobile build is served at `/m`. The server will attempt to serve mobile by default on mobile/tablet user-agents.
 - Replace placeholder illustration in `client/src/assets/hero-illustration.svg` (or use `hero-illustration.png`).
+- Placeholder file routes are served from base-domain **subpaths** (not subdomains):
+  - `https://adibkadir.dev/portfolio-html` → `server/static/portfolio-placeholder.html`
+  - `https://adibkadir.dev/portfolio-pdf` → `server/static/portfolio-placeholder.pdf`
+- For local development, start the server (`npm start`) and open:
+  - `http://localhost:4000/portfolio-html`
+  - `http://localhost:4000/portfolio-pdf`

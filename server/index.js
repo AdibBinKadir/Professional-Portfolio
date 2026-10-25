@@ -34,6 +34,9 @@ function detect(req) {
 
 const desktopDist = path.join(__dirname, '..', 'client', 'dist');
 const mobileDist = path.join(__dirname, '..', 'client-mobile', 'dist');
+const staticFilesDir = path.join(__dirname, 'static');
+const placeholderHtmlPath = path.join(staticFilesDir, 'portfolio-placeholder.html');
+const placeholderPdfPath = path.join(staticFilesDir, 'portfolio-placeholder.pdf');
 
 // API endpoints
 app.get('/device', (req, res) => {
@@ -68,6 +71,16 @@ app.post('/api/contact', (req, res) => {
     success: true, 
     message: 'Thank you for your message. I will get back to you soon!' 
   });
+});
+
+app.get('/portfolio-html', (req, res) => {
+  res.type('html');
+  return res.sendFile(placeholderHtmlPath);
+});
+
+app.get('/portfolio-pdf', (req, res) => {
+  res.type('application/pdf');
+  return res.sendFile(placeholderPdfPath);
 });
 
 // Device-aware static file serving and routing
