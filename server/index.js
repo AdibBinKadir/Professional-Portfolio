@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
 
 const app = express();
+const staticContentDir = path.join(__dirname, 'static');
 
 // Production-ready middleware
 if (process.env.NODE_ENV === 'production') {
@@ -34,6 +36,14 @@ function detect(req) {
 
 const desktopDist = path.join(__dirname, '..', 'client', 'dist');
 const mobileDist = path.join(__dirname, '..', 'client-mobile', 'dist');
+const htmlSubdomainHost = 'html.adibkadir.dev';
+const pdfSubdomainHost = 'pdf.adibkadir.dev';
+const subdomainFileRateLimit = rateLimit({
+  windowMs: 60 * 1000,
+  max: 120,
+  standardHeaders: true,
+  legacyHeaders: false
+});
 
 // API endpoints
 app.get('/device', (req, res) => {
@@ -68,6 +78,21 @@ app.post('/api/contact', (req, res) => {
     success: true, 
     message: 'Thank you for your message. I will get back to you soon!' 
   });
+});
+
+// Static subdomain routes
+app.use(subdomainFileRateLimit, (req, res, next) => {
+  const host = (req.headers.host || '').split(':')[0].toLowerCase();
+
+  if (host === htmlSubdomainHost) {
+    return res.sendFile(path.join(staticContentDir, 'index.html'));
+  }
+
+  if (host === pdfSubdomainHost) {
+    return res.sendFile(path.join(staticContentDir, 'resume.pdf'));
+  }
+
+  return next();
 });
 
 // Device-aware static file serving and routing

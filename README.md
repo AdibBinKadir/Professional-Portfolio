@@ -32,3 +32,12 @@ cd ..\server; node index.js
 Notes
 - Desktop build is served at `/`; mobile build is served at `/m`. The server will attempt to serve mobile by default on mobile/tablet user-agents.
 - Replace placeholder illustration in `client/src/assets/hero-illustration.svg` (or use `hero-illustration.png`).
+- Subdomain static files:
+  - `html.adibkadir.dev` serves `server/static/index.html`
+  - `pdf.adibkadir.dev` serves `server/static/resume.pdf`
+- Local development for subdomains:
+  - Run the server (`cd server && npm start`)
+  - Add hosts entries mapping `html.adibkadir.dev` and `pdf.adibkadir.dev` to `127.0.0.1`
+  - Or test with host headers, e.g.:
+    - `curl -H "Host: html.adibkadir.dev" http://127.0.0.1:4000`
+    - `curl -H "Host: pdf.adibkadir.dev" http://127.0.0.1:4000 --output /tmp/resume.pdf`
