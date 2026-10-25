@@ -35,6 +35,27 @@ function detect(req) {
 const desktopDist = path.join(__dirname, '..', 'client', 'dist');
 const mobileDist = path.join(__dirname, '..', 'client-mobile', 'dist');
 
+// Raw file routes (served identically for all devices).
+// Must be registered before the device-aware catch-all below.
+const filesDir = path.join(__dirname, 'files');
+
+// Serve anything in files/ directly by filename, e.g. /MICRO_2026_Extended_Abstract_TBarSim.pdf
+app.use(express.static(filesDir));
+
+app.get('/pdf', (req, res) => {
+  res.type('application/pdf');
+  res.sendFile(path.join(filesDir, 'MICRO_2026_Extended_Abstract_TBarSim.pdf'), (err) => {
+    if (err && !res.headersSent) res.status(err.status || 500).end();
+  });
+});
+
+app.get('/html', (req, res) => {
+  res.type('text/html');
+  res.sendFile(path.join(filesDir, 'page.html'), (err) => {
+    if (err && !res.headersSent) res.status(err.status || 500).end();
+  });
+});
+
 // API endpoints
 app.get('/device', (req, res) => {
   const device = detect(req);
