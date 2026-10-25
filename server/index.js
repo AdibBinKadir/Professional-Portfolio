@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
 
 const app = express();
@@ -37,6 +38,12 @@ const desktopDist = path.join(__dirname, '..', 'client', 'dist');
 const mobileDist = path.join(__dirname, '..', 'client-mobile', 'dist');
 const htmlSubdomainHost = 'html.adibkadir.dev';
 const pdfSubdomainHost = 'pdf.adibkadir.dev';
+const subdomainFileRateLimit = rateLimit({
+  windowMs: 60 * 1000,
+  max: 120,
+  standardHeaders: true,
+  legacyHeaders: false
+});
 
 // API endpoints
 app.get('/device', (req, res) => {
@@ -74,7 +81,7 @@ app.post('/api/contact', (req, res) => {
 });
 
 // Static subdomain routes
-app.use((req, res, next) => {
+app.use(subdomainFileRateLimit, (req, res, next) => {
   const host = (req.headers.host || '').split(':')[0].toLowerCase();
 
   if (host === htmlSubdomainHost) {
